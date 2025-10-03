@@ -11,10 +11,11 @@ exports.getTodos = async (req, res) => {
   }
 };
 
-// Tạo công việc mới (CREATE)
+// Cập nhật hàm createTodo
 exports.createTodo = async (req, res) => {
   const todo = new Todo({
     task: req.body.task,
+    dueDate: req.body.dueDate, // <<< THÊM DÒNG NÀY
   });
   try {
     const newTodo = await todo.save();
@@ -22,7 +23,7 @@ exports.createTodo = async (req, res) => {
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
-};
+}
 
 // Cập nhật công việc (UPDATE)
 exports.updateTodo = async (req, res) => {
